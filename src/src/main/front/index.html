@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Garagem de Carros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Garagem de Carros</h1>
+
+<form id="carroForm">
+    <input type="hidden" id="id" />
+    <input type="text" id="marca" placeholder="Marca" required />
+    <input type="text" id="modelo" placeholder="Modelo" required />
+    <input type="number" id="ano" placeholder="Ano" required />
+    <input type="text" id="tipo" placeholder="Tipo (Sedan, Hatch...)" required />
+    <button type="submit">Salvar</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano</th>
+        <th>Tipo</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody id="tabelaCarros"></tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
