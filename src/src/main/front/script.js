@@ -55,6 +55,7 @@ async function editarCarro(id) {
     document.getElementById("modelo").value = carro.modelo;
     document.getElementById("ano").value = carro.ano;
     document.getElementById("tipo").value = carro.tipo;
+    document.getElementById("modalCriar").classList.remove("hidden");
 }
 
 async function deletarCarro(id) {
@@ -65,3 +66,21 @@ async function deletarCarro(id) {
 }
 
 listarCarros();
+
+function abrirModalCriar() {
+    document.getElementById("carroForm").reset();
+    document.getElementById("id").value = "";
+    document.getElementById("modalCriar").classList.remove("hidden");
+}
+
+function fecharModalCriar() {
+    document.getElementById("modalCriar").classList.add("hidden");
+}
+
+function abrirModalHistorico() {
+    document.getElementById("modalHistorico").classList.remove("hidden");
+}
+
+function fecharModalHistorico() {
+    document.getElementById("modalHistorico").classList.add("hidden");
+}

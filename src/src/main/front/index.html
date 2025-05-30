@@ -8,15 +8,12 @@
 <body>
 <h1>Garagem de Carros</h1>
 
-<form id="carroForm">
-    <input type="hidden" id="id" />
-    <input type="text" id="marca" placeholder="Marca" required />
-    <input type="text" id="modelo" placeholder="Modelo" required />
-    <input type="number" id="ano" placeholder="Ano" required />
-    <input type="text" id="tipo" placeholder="Tipo (Sedan, Hatch...)" required />
-    <button type="submit">Salvar</button>
-</form>
+<!-- Botão Novo Registro (superior direito) -->
+<div style="text-align: right; margin-bottom: 1rem;">
+    <button onclick="abrirModalCriar()">+ Novo Registro</button>
+</div>
 
+<!-- Tabela de carros -->
 <table>
     <thead>
     <tr>
@@ -31,6 +28,35 @@
     <tbody id="tabelaCarros"></tbody>
 </table>
 
+<!-- Botão Ver Histórico (canto inferior direito) -->
+<div style="position: fixed; bottom: 20px; right: 20px;">
+    <button onclick="abrirModalHistorico()">📜 Ver Histórico</button>
+</div>
+
+<!-- Modal de Novo Registro -->
+<div id="modalCriar" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalCriar()">&times;</span>
+        <h2>Novo Carro</h2>
+        <form id="carroForm">
+            <input type="hidden" id="id" />
+            <input type="text" id="marca" placeholder="Marca" required />
+            <input type="text" id="modelo" placeholder="Modelo" required />
+            <input type="number" id="ano" placeholder="Ano" required />
+            <input type="text" id="tipo" placeholder="Tipo" required />
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de Histórico -->
+<div id="modalHistorico" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalHistorico()">&times;</span>
+        <h2>Histórico de Registros</h2>
+        <p>Em breve: exibição do histórico de alterações.</p>
+    </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
