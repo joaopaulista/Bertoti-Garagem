@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Garagem de Carros</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Garagem de Veículos</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1>Garagem de Carros</h1>
+<h1>Garagem de Veículos</h1>
 
 <!-- Botão Novo Registro (superior direito) -->
 <div style="text-align: right; margin-bottom: 1rem;">
     <button onclick="abrirModalCriar()">+ Novo Registro</button>
 </div>
 
-<!-- Tabela de carros -->
+<!-- Tabela de veículos -->
 <table>
     <thead>
     <tr>
         <th>ID</th>
+        <th>Veículo</th>
         <th>Marca</th>
         <th>Modelo</th>
         <th>Ano</th>
-        <th>Tipo</th>
+        <th>Especificações</th>
         <th>Ações</th>
     </tr>
     </thead>
-    <tbody id="tabelaCarros"></tbody>
+    <tbody id="tabelaVeiculos"></tbody>
 </table>
 
 <!-- Botão Ver Histórico (canto inferior direito) -->
@@ -37,13 +38,28 @@
 <div id="modalCriar" class="modal hidden">
     <div class="modal-content">
         <span class="close" onclick="fecharModalCriar()">&times;</span>
-        <h2>Novo Carro</h2>
-        <form id="carroForm">
+        <h2>Novo Veículo</h2>
+
+        <form id="veiculoForm">
             <input type="hidden" id="id" />
+
+            <!-- Select tipo logo no início -->
+            <select id="tipo" onchange="atualizarCamposEspecificos()" required>
+                <option value="">Selecione o tipo</option>
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
+                <option value="van">Van</option>
+                <option value="caminhao">Caminhão</option>
+            </select>
+
+            <!-- Campos padrão do veículo -->
             <input type="text" id="marca" placeholder="Marca" required />
             <input type="text" id="modelo" placeholder="Modelo" required />
             <input type="number" id="ano" placeholder="Ano" required />
-            <input type="text" id="tipo" placeholder="Tipo" required />
+
+            <!-- Campos específicos aqui -->
+            <div id="camposEspecificos"></div>
+
             <button type="submit">Salvar</button>
         </form>
     </div>
@@ -57,6 +73,7 @@
         <p>Em breve: exibição do histórico de alterações.</p>
     </div>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
