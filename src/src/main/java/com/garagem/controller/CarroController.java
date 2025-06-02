@@ -15,7 +15,7 @@ public class CarroController {
 
     private List<Carro> carros = new ArrayList<>();
 
-    private String generateId() {
+    private String geraId() {
         int nextId = carros.size() + 1;
         return String.format("CARRO-%04d", nextId);
     }
@@ -38,7 +38,7 @@ public class CarroController {
 
     @PostMapping
     public Carro criarCarro(@RequestBody Carro carro) {
-        carro.setId(generateId());
+        carro.setId(geraId());
         carros.add(carro);
         return carro;
     }
@@ -52,7 +52,7 @@ public class CarroController {
                 return new ResponseEntity<>(carro, HttpStatus.OK);
             }
         }
-        carro.setId(generateId());
+        carro.setId(geraId());
         carros.add(carro);
         return new ResponseEntity<>(carro, HttpStatus.CREATED);
     }
