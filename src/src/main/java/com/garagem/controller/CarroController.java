@@ -17,13 +17,13 @@ public class CarroController {
 
     private String geraId() {
         int nextId = carros.size() + 1;
-        return String.format("CARRO-%04d", nextId);
+        return String.format("%04d", nextId);
     }
 
     @PostConstruct
     public void init() {
-        carros.add(new Carro("CARRO-0001", "Ford", "Ka", 2015, "Hatch"));
-        carros.add(new Carro("CARRO-0002", "Toyota", "Corolla", 2020, "Sedan"));
+        carros.add(new Carro("0001", "Ford", "Ka", 2015, "Hatch"));
+        carros.add(new Carro("0002", "Toyota", "Corolla", 2020, "Sedan"));
     }
 
     @GetMapping
@@ -52,9 +52,7 @@ public class CarroController {
                 return new ResponseEntity<>(carro, HttpStatus.OK);
             }
         }
-        carro.setId(geraId());
-        carros.add(carro);
-        return new ResponseEntity<>(carro, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
