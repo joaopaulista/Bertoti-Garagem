@@ -86,7 +86,7 @@ async function deletarVeiculo(id) {
 function atualizarCamposEspecificos() {
     const container = document.getElementById("camposEspecificos");
     container.innerHTML = `
-        <input type="text" id="carroceria" placeholder="Carroceria / Especificação" required />
+        <input type="text" id="carroceria" placeholder="Especificação" required />
     `;
 }
 
