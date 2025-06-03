@@ -8,12 +8,10 @@
 <body>
 <h1>Garagem de Veículos</h1>
 
-<!-- Botão Novo Registro (superior direito) -->
 <div style="text-align: right; margin-bottom: 1rem;">
     <button onclick="abrirModalCriar()">+ Novo Registro</button>
 </div>
 
-<!-- Tabela de veículos -->
 <table>
     <thead>
     <tr>
@@ -22,14 +20,13 @@
         <th>Marca</th>
         <th>Modelo</th>
         <th>Ano</th>
-        <th>Especificações</th>
+        <th>Potencia</th>
         <th>Ações</th>
     </tr>
     </thead>
     <tbody id="tabelaVeiculos"></tbody>
 </table>
 
-<!-- Modal de Novo Registro -->
 <div id="modalCriar" class="modal hidden">
     <div class="modal-content">
         <span class="close" onclick="fecharModalCriar()">&times;</span>
@@ -38,7 +35,6 @@
         <form id="veiculoForm">
             <input type="hidden" id="id" />
 
-            <!-- Select tipo logo no início -->
             <select id="tipo" onchange="atualizarCamposEspecificos()" required>
                 <option value="">Selecione o tipo</option>
                 <option value="carro">Carro</option>
@@ -47,12 +43,10 @@
                 <option value="caminhao">Caminhão</option>
             </select>
 
-            <!-- Campos padrão do veículo -->
             <input type="text" id="marca" placeholder="Marca" required />
             <input type="text" id="modelo" placeholder="Modelo" required />
             <input type="number" id="ano" placeholder="Ano" required />
 
-            <!-- Campos específicos aqui -->
             <div id="camposEspecificos"></div>
 
             <button type="submit">Salvar</button>

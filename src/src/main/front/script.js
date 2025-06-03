@@ -8,6 +8,7 @@ async function listarVeiculos() {
     tabela.innerHTML = "";
     veiculos.forEach(veiculo => {
         const especificacaoTexto =
+            veiculo.potencia ||
             veiculo.carroceria ||
             veiculo.cilindradas ||
             veiculo.cv ||
@@ -42,7 +43,7 @@ form.addEventListener("submit", async (e) => {
         modelo: document.getElementById("modelo").value,
         ano: parseInt(document.getElementById("ano").value),
         tipo: document.getElementById("tipo").value.toLowerCase(),
-        carroceria: document.getElementById("carroceria").value
+        potencia: document.getElementById("potencia")?.value || ""
     };
 
     const method = id ? "PUT" : "POST";
@@ -71,7 +72,7 @@ async function editarVeiculo(id) {
     document.getElementById("tipo").value = veiculo.tipo;
 
     atualizarCamposEspecificos();
-    document.getElementById("carroceria").value = veiculo.carroceria || "";
+    document.getElementById("potencia").value = veiculo.potencia || "";
 
     document.getElementById("modalCriar").classList.remove("hidden");
 }
@@ -86,7 +87,7 @@ async function deletarVeiculo(id) {
 function atualizarCamposEspecificos() {
     const container = document.getElementById("camposEspecificos");
     container.innerHTML = `
-        <input type="text" id="carroceria" placeholder="Especificação" required />
+        <input type="text" id="potencia" placeholder="Potência (ex: 150cv)" required />
     `;
 }
 
@@ -99,14 +100,6 @@ function abrirModalCriar() {
 
 function fecharModalCriar() {
     document.getElementById("modalCriar").classList.add("hidden");
-}
-
-function abrirModalHistorico() {
-    document.getElementById("modalHistorico").classList.remove("hidden");
-}
-
-function fecharModalHistorico() {
-    document.getElementById("modalHistorico").classList.add("hidden");
 }
 
 listarVeiculos();

@@ -1,37 +1,30 @@
 package com.garagem.model;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "tipo"
-)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Carro.class, name = "carro"),
-        @JsonSubTypes.Type(value = Moto.class, name = "moto"),
-        @JsonSubTypes.Type(value = Van.class, name = "van"),
-        @JsonSubTypes.Type(value = Caminhao.class, name = "caminhao")
-})
-public abstract class Veiculo {
+public class Veiculo {
 
     private String id;
+    private String tipo;
     private String marca;
     private String modelo;
     private int ano;
+    private int potencia;
 
     public Veiculo() {}
 
-    public Veiculo(String id, String marca, String modelo, int ano) {
+    public Veiculo(String id, String tipo, String marca, String modelo, int ano, int potencia) {
         this.id = id;
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
+        this.potencia = potencia;
     }
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
     public String getMarca() { return marca; }
     public void setMarca(String marca) { this.marca = marca; }
@@ -41,4 +34,7 @@ public abstract class Veiculo {
 
     public int getAno() { return ano; }
     public void setAno(int ano) { this.ano = ano; }
+
+    public int getPotencia() { return potencia; }
+    public void setPotencia(int potencia) { this.potencia = potencia; }
 }

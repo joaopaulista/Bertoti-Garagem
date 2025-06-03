@@ -1,8 +1,7 @@
 package com.garagem.controller;
 
-import com.garagem.model.*;
+import com.garagem.model.Veiculo;
 import jakarta.annotation.PostConstruct;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,19 +14,22 @@ public class VeiculoController {
 
     private List<Veiculo> veiculos = new ArrayList<>();
 
+    private int lastId = 0;
+
     private String geraId() {
-        int nextId = veiculos.size() + 1;
-        return String.format("%04d", nextId);
+        lastId++;
+        return String.format("%04d", lastId);
     }
 
-    @PostConstruct
-    public void init() {
-        veiculos.add(new Carro("0001", "Ford", "Ka", 2015, "Hatch"));
-        veiculos.add(new Carro("0002", "Toyota", "Corolla", 2020, "Sedan"));
-        veiculos.add(new Moto("0003", "Honda", "CG 160", 2021, 160));
-        veiculos.add(new Van("0004", "Fiat", "Ducato", 2019, 15));
-        veiculos.add(new Caminhao("0005", "Volvo", "FH", 2018, 20.5));
-    }
+
+//    @PostConstruct
+//    public void init() {
+//        veiculos.add(new Veiculo("0001", "carro", "Ford", "Ka", 2015, 85));
+//        veiculos.add(new Veiculo("0002", "carro", "Toyota", "Corolla", 2020, 110));
+//        veiculos.add(new Veiculo("0003", "moto", "Honda", "CG 160", 2021, 15));
+//        veiculos.add(new Veiculo("0004", "van", "Fiat", "Ducato", 2019, 130));
+//        veiculos.add(new Veiculo("0005", "caminhao", "Volvo", "FH", 2018, 400));
+//    }
 
     @GetMapping
     public List<Veiculo> listarTodos() {
@@ -64,7 +66,15 @@ public class VeiculoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarVeiculo(@PathVariable String id) {
-        boolean removido = veiculos.removeIf(v -> v.getId().equals(id));
-        return removido ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        Optional<Veiculo> veiculoRemovido = veiculos.stream()
+                .filter(v -> v.getId().equals(id))
+                .findFirst();
+
+        if (veiculoRemovido.isPresent()) {
+            veiculos.remove(veiculoRemovido.get());
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
