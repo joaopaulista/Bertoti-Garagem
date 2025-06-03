@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Garagem de Carros</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Garagem de Veículos</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1>Garagem de Carros</h1>
+<h1>Garagem de Veículos</h1>
 
-<form id="carroForm">
-    <input type="hidden" id="id" />
-    <input type="text" id="marca" placeholder="Marca" required />
-    <input type="text" id="modelo" placeholder="Modelo" required />
-    <input type="number" id="ano" placeholder="Ano" required />
-    <input type="text" id="tipo" placeholder="Tipo (Sedan, Hatch...)" required />
-    <button type="submit">Salvar</button>
-</form>
+<div style="text-align: right; margin-bottom: 1rem;">
+    <button onclick="abrirModalCriar()">+ Novo Registro</button>
+</div>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
+        <th>Veículo</th>
         <th>Marca</th>
         <th>Modelo</th>
         <th>Ano</th>
-        <th>Tipo</th>
+        <th>Potencia</th>
         <th>Ações</th>
     </tr>
     </thead>
-    <tbody id="tabelaCarros"></tbody>
+    <tbody id="tabelaVeiculos"></tbody>
 </table>
+
+<div id="modalCriar" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalCriar()">&times;</span>
+        <h2>Novo Veículo</h2>
+
+        <form id="veiculoForm">
+            <input type="hidden" id="id" />
+
+            <select id="tipo" onchange="atualizarCamposEspecificos()" required>
+                <option value="">Selecione o tipo</option>
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
+                <option value="van">Van</option>
+                <option value="caminhao">Caminhão</option>
+            </select>
+
+            <input type="text" id="marca" placeholder="Marca" required />
+            <input type="text" id="modelo" placeholder="Modelo" required />
+            <input type="number" id="ano" placeholder="Ano" required />
+
+            <div id="camposEspecificos"></div>
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>

@@ -1,24 +1,30 @@
 package com.garagem.model;
 
-public class Carro {
+public class Veiculo {
+
     private String id;
+    private String tipo;
     private String marca;
     private String modelo;
     private int ano;
-    private String tipo;
+    private int potencia;
 
-    public Carro() {}
+    public Veiculo() {}
 
-    public Carro(String id, String marca, String modelo, int ano, String tipo) {
+    public Veiculo(String id, String tipo, String marca, String modelo, int ano, int potencia) {
         this.id = id;
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
-        this.tipo = tipo;
+        this.potencia = potencia;
     }
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
     public String getMarca() { return marca; }
     public void setMarca(String marca) { this.marca = marca; }
@@ -29,6 +35,6 @@ public class Carro {
     public int getAno() { return ano; }
     public void setAno(int ano) { this.ano = ano; }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public int getPotencia() { return potencia; }
+    public void setPotencia(int potencia) { this.potencia = potencia; }
 }
